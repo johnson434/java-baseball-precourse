@@ -60,7 +60,7 @@ public class BaseballGame {
         }
     }
 
-    private int getEqualNumCnt(int[] cntOfNumOfInputNum) {
+    private int getEqualNumCnt(final int[] cntOfNumOfInputNum) {
         int ballCnt = 0;
         for (int i = 0; i < digitCountOfRandom.length; i++) {
             ballCnt += Math.min(digitCountOfRandom[i], cntOfNumOfInputNum[i]);
