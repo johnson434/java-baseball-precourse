@@ -7,13 +7,13 @@ public class BaseballGame {
     private final int lengthOfInput;
     private final int randomNum;
     private final int[] digitCountOfRandom;
-    private final int INPUT_MIN_VALUE;
-    private final int INPUT_MAX_VALUE;
+    private final int inputMinValue;
+    private final int inputMaxValue;
 
     public BaseballGame() {
         lengthOfInput = 3;
-        INPUT_MIN_VALUE = 0;
-        INPUT_MAX_VALUE = 999;
+        inputMinValue = 0;
+        inputMaxValue = 999;
 
         digitCountOfRandom = new int[10];
         int cntOfNeededDigits = lengthOfInput;
@@ -91,8 +91,8 @@ public class BaseballGame {
         String input = Console.readLine();
         int inputNumber = Integer.parseInt(input);
 
-        if (inputNumber > INPUT_MAX_VALUE || inputNumber < INPUT_MIN_VALUE) {
-            throw new IllegalArgumentException("입력값은 " + INPUT_MIN_VALUE + "부터 " + INPUT_MAX_VALUE + "까지입니다.");
+        if (inputNumber > inputMaxValue || inputNumber < inputMinValue) {
+            throw new IllegalArgumentException("입력값은 " + inputMinValue + "부터 " + inputMaxValue + "까지입니다.");
         }
         return inputNumber;
     }
