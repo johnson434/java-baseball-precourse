@@ -40,8 +40,8 @@ public class BaseballGame {
                 index /= 10;
             }
 
-            int strikeCnt = getStrikeCnt(randomNum, inputNum);
-            int cntOfEqualDigits = getEqualNumCnt(digitCountOfRandom, cntOfNumOfInputNum);
+            int strikeCnt = getStrikeCnt(inputNum);
+            int cntOfEqualDigits = getEqualNumCnt(cntOfNumOfInputNum);
             int ballCnt = cntOfEqualDigits - strikeCnt;
 
             StringBuilder resultMessage = new StringBuilder();
@@ -60,21 +60,23 @@ public class BaseballGame {
         }
     }
 
-    private int getEqualNumCnt(int[] cntOfNumOfRandomNum, int[] cntOfNumOfInputNum) {
+    private int getEqualNumCnt(int[] cntOfNumOfInputNum) {
         int ballCnt = 0;
-        for (int i = 0; i < cntOfNumOfRandomNum.length; i++) {
-            ballCnt += Math.min(cntOfNumOfRandomNum[i], cntOfNumOfInputNum[i]);
+        for (int i = 0; i < digitCountOfRandom.length; i++) {
+            ballCnt += Math.min(digitCountOfRandom[i], cntOfNumOfInputNum[i]);
         }
         return ballCnt;
     }
 
-    private int getStrikeCnt(int randomNum, int inputNum) {
+    private int getStrikeCnt(int inputNum) {
         int strikeCnt = 0;
+        int numForCheckDigits = randomNum;
+
         do {
-            if (randomNum % 10 == inputNum % 10) {
+            if (numForCheckDigits % 10 == inputNum % 10) {
                 strikeCnt++;
             }
-            randomNum /= 10;
+            numForCheckDigits /= 10;
             inputNum /= 10;
         } while (inputNum != 0);
 
