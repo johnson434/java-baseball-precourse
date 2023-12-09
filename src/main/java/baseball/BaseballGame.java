@@ -6,14 +6,15 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class BaseballGame {
     private final int lengthOfInput;
     private final int randomNum;
-    private final int[] digitCountOfRandom = new int[10];
+    private final int[] digitCountOfRandom;
 
     public BaseballGame() {
         lengthOfInput = 3;
+        digitCountOfRandom = new int[10];
 
-        int cntOfNeededNum = lengthOfInput;
+        int cntOfNeededDigits = lengthOfInput;
         int sumOfDigits = 0;
-        while (cntOfNeededNum > 0) {
+        while (cntOfNeededDigits > 0) {
             int temp = Randoms.pickNumberInRange(1, 9);
             if (digitCountOfRandom[temp] != 0) {
                 continue;
@@ -21,9 +22,8 @@ public class BaseballGame {
 
             digitCountOfRandom[temp]++;
             sumOfDigits = sumOfDigits * 10 + temp;
-            cntOfNeededNum--;
+            cntOfNeededDigits--;
         }
-
         this.randomNum = sumOfDigits;
     }
 
@@ -40,11 +40,9 @@ public class BaseballGame {
                 index /= 10;
             }
 
-            int ballCnt;
-            int strikeCnt;
-            int cntOfEqualNum = getEqualNumCnt(digitCountOfRandom, cntOfNumOfInputNum);
-            strikeCnt = getStrikeCnt(randomNum, inputNum);
-            ballCnt = cntOfEqualNum - strikeCnt;
+            int strikeCnt = getStrikeCnt(randomNum, inputNum);
+            int cntOfEqualDigits = getEqualNumCnt(digitCountOfRandom, cntOfNumOfInputNum);
+            int ballCnt = cntOfEqualDigits - strikeCnt;
 
             StringBuilder resultMessage = new StringBuilder();
 
