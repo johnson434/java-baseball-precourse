@@ -7,11 +7,15 @@ public class BaseballGame {
     private final int lengthOfInput;
     private final int randomNum;
     private final int[] digitCountOfRandom;
+    private final int INPUT_MIN_VALUE;
+    private final int INPUT_MAX_VALUE;
 
     public BaseballGame() {
         lengthOfInput = 3;
-        digitCountOfRandom = new int[10];
+        INPUT_MIN_VALUE = 0;
+        INPUT_MAX_VALUE = 999;
 
+        digitCountOfRandom = new int[10];
         int cntOfNeededDigits = lengthOfInput;
         int sumOfDigits = 0;
         while (cntOfNeededDigits > 0) {
@@ -86,8 +90,9 @@ public class BaseballGame {
     public int getNumbers()  {
         String input = Console.readLine();
         int inputNumber = Integer.parseInt(input);
-        if (inputNumber > 999) {
-            throw new IllegalArgumentException("숫자의 값이 3자리가 아닙니다.");
+
+        if (inputNumber > INPUT_MAX_VALUE || inputNumber < INPUT_MIN_VALUE) {
+            throw new IllegalArgumentException("입력값은 " + INPUT_MIN_VALUE + "부터 " + INPUT_MAX_VALUE + "까지입니다.");
         }
         return inputNumber;
     }
